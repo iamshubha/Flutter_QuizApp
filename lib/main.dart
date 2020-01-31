@@ -37,7 +37,7 @@ class _QuizBodyState extends State<QuizBody> {
   ];
   int questionNumber = 0;
 
-  List<bool> answer = [false,true,true];
+  List<bool> answer = [false, true, true];
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +71,9 @@ class _QuizBodyState extends State<QuizBody> {
                 iconList.add(Icon(
                   Icons.check,
                   color: Colors.green[500],
-                  
                 ));
                 questionNumber++;
               });
-              
             },
           ),
         )),
@@ -91,6 +89,7 @@ class _QuizBodyState extends State<QuizBody> {
                     Icons.close,
                     color: Colors.red,
                   ));
+                  questionNumber++;
                 });
               },
             ),
