@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.blueGrey[900],
+        // backgroundColor: Colors.blueGrey[900],
+        backgroundColor: Colors.grey[850],
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -34,6 +35,9 @@ class _QuizBodyState extends State<QuizBody> {
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.',
   ];
+  int questionNumber = 0;
+
+  List<bool> answer = [false,true,true];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class _QuizBodyState extends State<QuizBody> {
             padding: const EdgeInsets.all(8.0),
             child: Center(
               child: Text(
-                "modi gi is a chif minister ",
+                questionList[questionNumber],
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 25.0,
@@ -67,8 +71,11 @@ class _QuizBodyState extends State<QuizBody> {
                 iconList.add(Icon(
                   Icons.check,
                   color: Colors.green[500],
+                  
                 ));
+                questionNumber++;
               });
+              
             },
           ),
         )),
