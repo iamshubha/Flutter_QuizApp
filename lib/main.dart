@@ -34,10 +34,13 @@ class _QuizBodyState extends State<QuizBody> {
     'You can lead a cow down stairs but not up stairs.',
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.',
+    'You can lead a cow down stairs but not up stairs.',
+    'Approximately one quarter of human bones are in the feet.',
+    'A slug\'s blood is green.',
   ];
   int questionNumber = 0;
 
-  List<bool> answer = [false, true, true];
+  List<bool> answer = [false, true, true, false, true, true];
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +70,22 @@ class _QuizBodyState extends State<QuizBody> {
             color: Colors.green,
             child: Text('True'),
             onPressed: () {
+              bool correctAnswer = answer[questionNumber];
+
+
               setState(() {
-                iconList.add(Icon(
-                  Icons.check,
-                  color: Colors.green[500],
-                ));
+                if (correctAnswer == true) {
+                  iconList.add(Icon(
+                    Icons.check,
+                    color: Colors.green[500],
+                  ));
+                } else {
+                  iconList.add(Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ));
+                }
+
                 questionNumber++;
               });
             },
@@ -84,11 +98,20 @@ class _QuizBodyState extends State<QuizBody> {
               color: Colors.red,
               child: Text('False'),
               onPressed: () {
+                bool correctAnswer = answer[questionNumber];
                 setState(() {
+
+                   if (correctAnswer == false) {
+                  iconList.add(Icon(
+                    Icons.check,
+                    color: Colors.green[500],
+                  ));
+                } else {
                   iconList.add(Icon(
                     Icons.close,
                     color: Colors.red,
                   ));
+                }
                   questionNumber++;
                 });
               },
