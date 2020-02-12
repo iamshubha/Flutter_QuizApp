@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/questionanswer.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +11,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // backgroundColor: Colors.blueGrey[900],
         backgroundColor: Colors.grey[850],
         body: SafeArea(
           child: Padding(
@@ -30,17 +30,23 @@ class QuizBody extends StatefulWidget {
 
 class _QuizBodyState extends State<QuizBody> {
   List<Icon> iconList = [];
-  List<String> questionList = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.',
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.',
-  ];
+ 
   int questionNumber = 0;
 
-  List<bool> answer = [false, true, true, false, true, true];
+ 
+
+  List<QuestionAnswer> questionSet = [
+    QuestionAnswer('You can lead a cow down stairs but not up stairs.', false),
+    QuestionAnswer(
+        'Approximately one quarter of human bones are in the feet.', true),
+    QuestionAnswer(
+        'Approximately one quarter of human bones are in the feet.', true),
+    QuestionAnswer('You can lead a cow down stairs but not up stairs.', false),
+    QuestionAnswer(
+        'Approximately one quarter of human bones are in the feet.', true),
+    QuestionAnswer(
+        'Approximately one quarter of human bones are in the feet.', true),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +60,7 @@ class _QuizBodyState extends State<QuizBody> {
             padding: const EdgeInsets.all(8.0),
             child: Center(
               child: Text(
-                questionList[questionNumber],
+                questionSet[questionNumber].questionText,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 25.0,
@@ -70,8 +76,7 @@ class _QuizBodyState extends State<QuizBody> {
             color: Colors.green,
             child: Text('True'),
             onPressed: () {
-              bool correctAnswer = answer[questionNumber];
-
+              bool correctAnswer = questionSet[questionNumber].questionAnswer;
 
               setState(() {
                 if (correctAnswer == true) {
@@ -85,7 +90,6 @@ class _QuizBodyState extends State<QuizBody> {
                     color: Colors.red,
                   ));
                 }
-
                 questionNumber++;
               });
             },
@@ -98,20 +102,19 @@ class _QuizBodyState extends State<QuizBody> {
               color: Colors.red,
               child: Text('False'),
               onPressed: () {
-                bool correctAnswer = answer[questionNumber];
+                bool correctAnswer = questionSet[questionNumber].questionAnswer;
                 setState(() {
-
-                   if (correctAnswer == false) {
-                  iconList.add(Icon(
-                    Icons.check,
-                    color: Colors.green[500],
-                  ));
-                } else {
-                  iconList.add(Icon(
-                    Icons.close,
-                    color: Colors.red,
-                  ));
-                }
+                  if (correctAnswer == false) {
+                    iconList.add(Icon(
+                      Icons.check,
+                      color: Colors.green[500],
+                    ));
+                  } else {
+                    iconList.add(Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ));
+                  }
                   questionNumber++;
                 });
               },
